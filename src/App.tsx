@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { CountryDataType } from "./types/CountryDataType";
+
+type dataType = { slip: { id: number; advice: "string" } };
 
 function App() {
-  const [countryData, setCountryData] = useState<CountryDataType[]>([]);
+  const [countryData, setCountryData] = useState<dataType>();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://restcountries.com/v3.1/all").then(
+        const response = await fetch("https://api.adviceslip.com/advice").then(
           (res) => res.json()
         );
         setCountryData(response);
@@ -24,9 +25,7 @@ function App() {
   return (
     <>
       <main>
-        {countryData.map((country) => (
-          <p>{country.name.common}</p>
-        ))}
+        <h1>{countryData?.slip.advice}</h1>
       </main>
     </>
   );
