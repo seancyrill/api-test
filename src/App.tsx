@@ -17,9 +17,7 @@ function App() {
         console.log(error);
       }
     };
-    return () => {
-      fetchData();
-    };
+    fetchData();
   }, []);
 
   return (
